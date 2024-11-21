@@ -51,13 +51,21 @@
 
         keyboard_control {
             bindings = <
-&trans  &trans  &trans  &trans           &trans           &trans                           &trans      &trans      &trans      &trans  &trans  &bootloader
+&studio_unlock  &trans  &trans  &trans           &trans           &trans                           &trans      &trans      &trans      &trans  &trans  &bootloader
 &trans  &trans  &trans  &rgb_ug RGB_HUD  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI                  &trans      &trans      &trans      &trans  &trans  &trans
 &trans  &trans  &trans  &rgb_ug RGB_BRD  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI                  &bt BT_CLR  &bt BT_PRV  &bt BT_NXT  &trans  &trans  &trans
 &trans  &trans  &trans  &trans           &trans           &trans           &trans  &trans  &trans      &trans      &trans      &trans  &trans  &trans
                 &trans  &trans           &trans           &trans           &trans  &trans  &trans      &trans      &trans      &trans
                                                                            &trans  &trans
             >;
+        };
+
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
         };
     };
 };
