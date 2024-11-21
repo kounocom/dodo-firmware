@@ -1,0 +1,20 @@
+#include "dodo.dtsi" // Notice that the main dtsi files are included in the overlay.
+
+&default_transform {
+  col-offset = <6>;
+};
+
+&kscan_matrix {
+    col-gpios
+      = <&expander 5 (GPIO_ACTIVE_LOW)>
+      , <&expander 4 (GPIO_ACTIVE_LOW)>
+      , <&expander 3 (GPIO_ACTIVE_LOW)>
+      , <&expander 2 (GPIO_ACTIVE_LOW)>
+      , <&expander 1 (GPIO_ACTIVE_LOW)>
+      , <&expander 0 (GPIO_ACTIVE_LOW)>
+      ;
+};
+
+&right_encoder {
+    status = "okay";
+};
