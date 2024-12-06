@@ -5,67 +5,100 @@
 
 / {
     behaviors {
-        media_control: media_control {
+        emoji: emoji {
             compatible = "zmk,behavior-tap-dance";
-            label = "MEDIA_CONTROL";
+            label = "EMOJI";
             #binding-cells = <0>;
-            bindings = <&kp K_PLAY_PAUSE>, <&kp K_NEXT>, <&kp K_PREV>;
+            bindings = <&surprised_emoji>, <&heart_emoji>;
         };
 
-        rgb_brightness: rgb_brightness {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "RGB_BRIGHTNESS";
-            #sensor-binding-cells = <0>;
-            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        layerctl: layerctl {
+            compatible = "zmk,behavior-tap-dance";
+            label = "LAYERCTL";
+            #binding-cells = <0>;
+            bindings = <&mo 2>, <&mo 3>;
+        };
+    };
+
+    macros {
+        to_headphones: to_headphones {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LA(F2)) &to 1>;
+            label = "TO_HEADPHONES";
+        };
+
+        to_speakers: to_speakers {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LA(LC(F1)) &to 0>;
+            label = "TO_SPEAKERS";
+        };
+
+        surprised_emoji: surprised_emoji {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp A &kp A &kp TAB>;
+            label = "SURPRISED_EMOJI";
+        };
+
+        heart_emoji: heart_emoji {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp H &kp E &kp A &kp TAB>;
+            label = "HEART_EMOJI";
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        MainEncoderStatus0 {
             bindings = <
-&kp GRAVE   &kp N1  &kp N2  &kp N3    &kp N4            &kp N5                                           &kp N6     &kp N7         &kp N8     &kp N9   &kp N0    &kp MINUS
-&kp TAB     &kp Q   &kp W   &kp E     &kp R             &kp T                                            &kp Y      &kp U          &kp I      &kp O    &kp P     &kp LEFT_BRACKET
-&kp ESCAPE  &kp A   &kp S   &kp D     &kp F             &kp G                                            &kp H      &kp J          &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHIFT  &kp Z   &kp X   &kp C     &kp V             &kp B          &lt 1 RIGHT_BRACKET  &lt 1 EQUAL  &kp N      &kp M          &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSLASH
-                    &mo 2   &kp LGUI  &kp LEFT_CONTROL  &kp BACKSPACE  &kp DELETE           &kp ENTER    &kp SPACE  &kp RIGHT_ALT  &kp RALT   &kp A
-                                                                       &media_control       &kp SPACE
+&kp ESC    &kp N1  &kp N2    &kp N3   &kp N4     &kp N5                                       &kp N6     &kp N7            &kp N8             &kp N9         &kp N0    &kp MINUS
+&kp GRAVE  &kp Q   &kp W     &kp E    &kp R      &kp T                                        &kp Y      &kp U             &kp I              &kp O          &kp P     &kp EQUAL
+&emoji     &kp A   &kp S     &kp D    &kp F      &kp G                                        &kp H      &kp J             &kp K              &kp L          &kp SEMI  &kp SQT
+&kp LGUI   &kp Z   &kp X     &kp C    &kp V      &kp B      &kp ENTER       &kp BACKSPACE     &kp N      &kp M             &kp COMMA          &kp DOT        &kp FSLH  &kp PRINTSCREEN
+                   &kp LALT  &kp TAB  &kp LCTRL  &kp SPACE  &kp LSHFT       &layerctl         &kp SPACE  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+                                                            &to_headphones  &kp C_PLAY_PAUSE
             >;
 
             sensor-bindings =
-                <&inc_dec_kp K_VOLUME_UP K_VOLUME_DOWN>,
-                <&inc_dec_kp RIGHT LEFT>;
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>,
+                <&inc_dec_kp C_NEXT C_PREV>;
         };
 
-        rare_keys {
+        MainEncoderStatus1 {
             bindings = <
-&kp F1  &kp F2  &kp F3    &kp F4    &kp F5  &kp F6                                       &kp F7  &kp F8     &kp F9     &kp F10         &kp F11       &kp F12
-&trans  &trans  &trans    &trans    &trans  &kp PRINTSCREEN                              &trans  &kp KP_N7  &kp KP_N8  &kp KP_N9       &kp KP_MINUS  &trans
-&trans  &trans  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT                                    &trans  &kp KP_N4  &kp KP_N5  &kp KP_N6       &kp KP_PLUS   &trans
-&trans  &trans  &trans    &trans    &trans  &kp K_NEXT       &trans              &trans  &trans  &kp KP_N1  &kp KP_N2  &kp KP_N3       &kp KP_ENTER  &trans
-                &trans    &trans    &trans  &trans           &kp LA(LEFT_SHIFT)  &trans  &trans  &trans     &kp KP_N0  &kp LS(KP_DOT)
-                                                             &trans              &trans
+&trans  &trans  &trans  &trans  &trans  &trans                        &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                        &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                        &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans        &trans  &trans  &trans  &trans  &trans
+                                                &to_speakers  &trans
             >;
         };
 
-        keyboard_control {
+        Functions {
             bindings = <
-&studio_unlock  &trans  &trans  &trans           &trans           &trans                           &trans      &trans      &trans      &trans  &trans  &bootloader
-&trans  &trans  &trans  &rgb_ug RGB_HUD  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI                  &trans      &trans      &trans      &trans  &trans  &trans
-&trans  &trans  &trans  &rgb_ug RGB_BRD  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI                  &bt BT_CLR  &bt BT_PRV  &bt BT_NXT  &trans  &trans  &trans
-&trans  &trans  &trans  &trans           &trans           &trans           &trans  &trans  &trans      &trans      &trans      &trans  &trans  &trans
-                &trans  &trans           &trans           &trans           &trans  &trans  &trans      &trans      &trans      &trans
-                                                                           &trans  &trans
+&kp F1  &kp F2    &kp F3          &kp F4     &kp F5  &kp F6                  &kp F7  &kp F8  &kp F9  &kp F10          &kp F11  &kp F12
+&trans  &trans    &kp UP_ARROW    &trans     &trans  &trans                  &trans  &trans  &trans  &trans           &trans   &trans
+&trans  &kp LEFT  &kp DOWN_ARROW  &kp RIGHT  &trans  &trans                  &trans  &trans  &trans  &trans           &trans   &trans
+&trans  &trans    &trans          &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans           &trans   &trans
+                  &trans          &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp PAUSE_BREAK
+                                                             &trans  &trans
             >;
         };
 
-        extra1 {
-            status = "reserved";
-        };
-
-        extra2 {
-            status = "reserved";
+        KeyboardCtl {
+            bindings = <
+&rgb_ug RGB_TOG  &rgb_ug RGB_COLOR_HSB(0,0,100)  &rgb_ug RGB_COLOR_HSB(320,93,49)  &trans           &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+&rgb_ug RGB_EFR  &rgb_ug RGB_EFF                 &rgb_ug RGB_SAD                   &rgb_ug RGB_SAI  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+&rgb_ug RGB_SPD  &rgb_ug RGB_SPI                 &rgb_ug RGB_HUD                   &rgb_ug RGB_HUI  &trans  &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+&rgb_ug RGB_BRD  &rgb_ug RGB_BRI                 &trans                            &trans           &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                                 &bt BT_PRV                        &bt BT_NXT       &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                                                                                                    &trans  &trans
+            >;
         };
     };
 };
