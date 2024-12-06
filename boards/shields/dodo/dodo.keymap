@@ -24,14 +24,14 @@
         to_headphones: to_headphones {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LA(F2)) &to 1>;
+            bindings = <&kp LC(LA(F2)) &kp LA(F2) &to 1>;
             label = "TO_HEADPHONES";
         };
 
         to_speakers: to_speakers {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LA(LC(F1)) &to 0>;
+            bindings = <&kp LA(LC(F1)) &kp LA(F1) &to 0>;
             label = "TO_SPEAKERS";
         };
 
