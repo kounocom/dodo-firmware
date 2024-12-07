@@ -71,9 +71,7 @@
                                                             &to_headphones  &kp C_PLAY_PAUSE
             >;
 
-            sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp C_NEXT C_PREV>;
+            sensor-bindings = <&inc_dec_kp A B>, <&inc_dec_kp C_NEXT C_PREV>;
         };
 
         MainEncoderStatus1 {
