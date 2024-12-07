@@ -38,22 +38,14 @@
         surprised_emoji: surprised_emoji {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&kp COLON &kp A &kp A>,
-                <&macro_wait_time 50>,
-                <&kp TAB>;
-
+            bindings = <&kp COLON &kp N &kp Y &kp A &kp UNDER &kp A &kp COLON>;
             label = "SURPRISED_EMOJI";
         };
 
         heart_emoji: heart_emoji {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&kp COLON &kp H &kp E &kp A>,
-                <&macro_wait_time 50>,
-                <&kp TAB>;
-
+            bindings = <&kp COLON &kp LS(H) &kp E &kp A &kp R &kp T &kp COLON>;
             label = "HEART_EMOJI";
         };
     };
