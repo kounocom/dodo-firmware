@@ -42,6 +42,13 @@
             require-prior-idle-ms = <(-1)>;
             flavor = "tap-preferred";
         };
+
+        screenshot_mute: screenshot_mute {
+            compatible = "zmk,behavior-tap-dance";
+            label = "SCREENSHOT_MUTE";
+            #binding-cells = <0>;
+            bindings = <&kp PRINTSCREEN>, <&kp PAUSE_BREAK>;
+        };
     };
 
     macros {
@@ -89,7 +96,7 @@
 &kp ESC    &kp N1  &kp N2    &kp N3   &kp N4     &kp N5                                          &kp N6     &kp N7            &kp N8             &kp N9         &kp N0    &kp MINUS
 &kp GRAVE  &kp Q   &kp W     &kp E    &kp R      &kp T                                           &kp Y      &kp U             &kp I              &kp O          &kp P     &kp EQUAL
 &emoji     &kp A   &kp S     &kp D    &kp F      &kp G                                           &kp H      &kp J             &kp K              &kp L          &kp SEMI  &kp SQT
-&kp LGUI   &kp Z   &kp X     &kp C    &kp V      &kp B      &kp ENTER          &kp BACKSPACE     &kp N      &kp M             &kp COMMA          &kp DOT        &kp FSLH  &kp PRINTSCREEN
+&kp LGUI   &kp Z   &kp X     &kp C    &kp V      &kp B      &kp ENTER          &kp BACKSPACE     &kp N      &kp M             &kp COMMA          &kp DOT        &kp FSLH  &screenshot_mute
                    &kp LALT  &kp TAB  &kp LCTRL  &kp SPACE  &kp LSHFT          &layerctl         &kp SPACE  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
                                                             &h_headphones 2 0  &kp C_PLAY_PAUSE
             >;
